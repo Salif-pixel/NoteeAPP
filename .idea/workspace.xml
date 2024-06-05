@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db60f8db-4588-497e-852d-936396190fc6" name="Changes" comment="" />
+    <list default="true" id="db60f8db-4588-497e-852d-936396190fc6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,8 +42,10 @@
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/DELL/WebstormProjects/notee/NoteeFront/src/assets",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
@@ -102,7 +106,7 @@
       <workItem from="1717354694436" duration="22744000" />
       <workItem from="1717405205099" duration="5507000" />
       <workItem from="1717410814440" duration="69458000" />
-      <workItem from="1717601823331" duration="4145000" />
+      <workItem from="1717601823331" duration="11425000" />
     </task>
     <servers />
   </component>
