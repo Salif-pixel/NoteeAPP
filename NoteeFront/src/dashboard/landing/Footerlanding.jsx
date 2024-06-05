@@ -25,7 +25,7 @@ function Footerlanding({ animation, selected, setSelected }) {
 
 
     return (
-        <footer className={`bg-white fixed bottom-0 left-0  right-0 shadow flex justify-center items-center py-6`}>
+        <footer className={`${bgColor} fixed bottom-0 left-0  right-0 shadow flex justify-center items-center py-6`}>
             <span className="text-sm text-gray-500 text-center dark:text-gray-400">© 2024 Notee. Tous droits reservés.</span>
             <div className={`flex ml-2 w-14 h-5 justify-between`}>
                 <svg onClick={handleDecrement} className={`${textColor} cursor-pointer hover:text-${colortheme}-500`} data-slot="icon" aria-hidden="true" fill="none" strokeWidth="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
