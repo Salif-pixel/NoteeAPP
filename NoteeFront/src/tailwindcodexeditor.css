@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-inline-collapsed.css-dev-only-do-not-override-1kuana8{
+    @apply w-16 border-0
+}
+.ant-menu-dark{
+    @apply bg-black ;
+}
+.ant-menu-light{
+    @apply bg-white;
+
+}
+.ant-menu-dark .ant-menu-item.ant-menu-item-selected{
+    @apply bg-white;
+}
+.ant-menu-light .ant-menu-item.ant-menu-item-selected{
+    @apply bg-black;
+}
+.ant-menu-dark .ant-menu-item-selected .anticon.ant-menu-item-icon{
+    @apply text-black
+}
+.ant-menu-light .ant-menu-item-selected .anticon.ant-menu-item-icon{
+    @apply text-white
+}
+
+/* Ajouter ce bloc pour cibler les éléments .codex-editor */
+.codex-editor {
+    @apply w-full ;
+}
+.cdx-input.embed-tool__caption{
+    @apply text-lg font-sans   text-white bg-blue-500;
+}
+
+.cdx-list__item{
+    @apply text-lg font-bold;
+}
+.cdx-alert{
+    @apply text-xl ;
+}
+.cdx-simple-image__picture{
+   @apply break-before-avoid-page break-after-avoid-page
+}
+.cdx-input.cdx-simple-image__caption{
+    @apply text-xl font-sans text-center outline-none  text-white bg-amber-800 border-0 mb-10  ;
+}
+.cdx-checklist__item-text{
+    @apply bg-blue-400 p-1 rounded-lg ;
+}
+.cdx-checklist__item{
+    @apply p-2 text-white;
+}
