@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import { first } from 'rxjs';
-import { CreateUserDto } from 'src/auth/dto/create-user-dto';
-import { S } from 'vite/dist/node/types.d-aGj9QkWt';
 import { UserUpdateDto } from 'src/auth/dto/user-input-dto';
 import { SocketService } from 'src/Socket/SocketService';
 
