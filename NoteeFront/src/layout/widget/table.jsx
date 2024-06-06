@@ -53,7 +53,7 @@ import Checklist from "@editorjs/checklist";
 
 const TABLE_HEAD = ["", "Noms", "Email", "Role", "date naissance", "en ligne", "actions"];
 
-export function Table({ currentuser, setcurrentuser }) {
+export function Table({ currentuser, setcurrentuser,Users, setUsers, fetched,loading }) {
 
     const checkedList = [];
 
@@ -63,27 +63,17 @@ export function Table({ currentuser, setcurrentuser }) {
     const [shuffle, setShuffle] = useState(shuffleValue);
     const createdSocket = io(WebSocketUrl);
     const handleOpen = () => setOpen({ isopen: !open.isopen, type: open.type, email: open.email });
-    const [Users, setUsers] = useState(null);
-    const [loading, setLoading] = useState(true);
+
     const [inputValue, setInputValue] = useState('');
     const {colortheme}=useContext(ColorthemeNotee);
     const HandleInputChange = (event) => {
         setInputValue(event.target.value);
     }
     const { userInfo } = useContext(AuthContext);
-    const [fetched, setFetched] = useState(false);
+
 
     useEffect(() => {
-        const fetchData = async (data) => {
-            const fetchedUsers = await getuser(data);
-            setUsers(fetchedUsers);
-            setLoading(false);
-            setFetched(true);
-        };
-    
-        if (!fetched) {
-            fetchData(userInfo);
-        }
+
     
         createdSocket.on("user-connected",(data)=>{
             

@@ -15,7 +15,7 @@ function CardAnimated() {
         try {
             while (true) {
 
-                await delay(5000);
+                await delay(1500);
                 await Promise.all([
                     animate('#card1', {rotate: 50, scale: 0.4, y: 1000, opacity: 0}, {duration: 1}),
                     animate('#card2', {
@@ -25,7 +25,7 @@ function CardAnimated() {
                     }),
                 ]);
                 await animate('#card1', {y: -1000}, {duration: 1}),
-                    await delay(5000);
+                    await delay(1500);
                 await Promise.all([
                     animate('#card2', {rotate: 50, scale: 0.4, y: 1000, opacity: 0}, {duration: 1}),
                     animate('#card3', {
@@ -35,7 +35,7 @@ function CardAnimated() {
                     }),
                 ]);
                 animate('#card2', {y: -1000}, {duration: 1}),
-                    await delay(5000);
+                    await delay(1500);
                 await animate('#card3', {rotate: 50, scale: 0.4, y: 1000, opacity: 0}, {duration: 1});
                 await animate('#card3', {y: -1000}, {duration: 1}),
                     await animate('#card1', {rotate: 0, scale: 1, y: 0, opacity: 1}, {duration: 1});
@@ -72,7 +72,7 @@ function CardAnimated() {
     const textColor = toggle === 'light' ? 'text-black' : 'text-white';
     const bgColor = toggle === 'light' ? 'bg-white' : 'bg-bigdark';
     return (
-        <div ref={scope} className={`w-full`}>
+        <div ref={scope} className={` min-w-[calc(100vw-40vw)] w-full  max-w-[calc(100vw-40vw)]`}>
             <motion.div  initial={{x: -200, opacity: 0}} whileInView={{x: 0, scale: 0.8, opacity: 1}}
                         transition={{
                             type: "spring",
@@ -97,7 +97,9 @@ function CardAnimated() {
 
                             }} className={`mx-auto h-1 w-24 bg-${textColor}  rounded-lg`}></motion.div>
                         </div>
-                        <DefaultSkeleton/>
+                        <div className={`w-full flex justify-center`}>
+                            <DefaultSkeleton/>
+                        </div>
                     </Card>
                 </motion.div>
                 <motion.div className={`w-full`} initial={{opacity: 0}}
@@ -118,7 +120,10 @@ function CardAnimated() {
 
                             }} className={`mx-auto h-1 w-24 bg-${textColor}  rounded-lg`}></motion.div>
                         </div>
-                        <DefaultSkeleton/>
+                        <div className={`w-full flex justify-center`}>
+                            <DefaultSkeleton/>
+                        </div>
+
                     </Card>
                 </motion.div>
                 <motion.div className={`w-full`} initial={{opacity: 0}}
@@ -138,7 +143,9 @@ function CardAnimated() {
 
                             }} className={`mx-auto h-1 w-24 bg-${textColor}  rounded-lg`}></motion.div>
                         </div>
-                        <DefaultSkeleton/>
+                        <div className={`w-full flex justify-center`}>
+                            <DefaultSkeleton/>
+                        </div>
                     </Card>
                 </motion.div>
 

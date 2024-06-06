@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { motion } from "framer-motion";
 import { useContext, useEffect } from 'react';
-import { theme } from '../../../../App.jsx';
+import {ColorthemeNotee, theme} from '../../../../App.jsx';
 import {createnote} from "../../service/note-service.jsx";
 ;
 
@@ -15,7 +15,7 @@ function AddForm({ setCategoriesList,setListNotes,listnotes, open, setOpen}) {
     } = useForm();
 
     const { toggle } = useContext(theme);
-    const {colortheme}=useContext(theme);
+    const {colortheme}=useContext(ColorthemeNotee);
     const bgColor = toggle === 'light' ? 'bg-blue-gray-50' : 'bg-customdark';
     const textColor = toggle === 'light' ? 'gray-900' : 'white';
     const content=JSON.stringify({"time":1715811425275,"blocks":[{"id":"C4LPgxwZnp","type":"paragraph","data":{"text":"Allons noter .... <br>"},"tunes":{"textAlignment":{"alignment":"left"}}}],"version":"2.29.1"})
@@ -70,7 +70,6 @@ function AddForm({ setCategoriesList,setListNotes,listnotes, open, setOpen}) {
 
             <button onClick={handleSubmit(async (data) => {
             await createnote(data).then((res) => {
-
                     setOpen({isopen: false, type: "create", title: data.title, content: data.content, userId: data.userId, categoryId: data.categoryId});
                     setListNotes(res.data.listnotes);
                     setCategoriesList(res.data.listcategory)

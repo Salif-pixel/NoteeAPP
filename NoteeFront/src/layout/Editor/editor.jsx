@@ -6,7 +6,8 @@ import {ref, uploadBytesResumable, getDownloadURL, uploadBytes} from "firebase/s
 import {imageDb} from "../../dashboard/user/firebaseImage/config";
 import {v4} from "uuid";
 import {ChatBubbleBottomCenterIcon} from "@heroicons/react/24/solid/index.js";
-import {motion} from "framer-motion"; // Remplacez par le chemin vers votre configuration Firebase
+import {motion} from "framer-motion";
+import {Document, Page, View} from "@react-pdf/renderer"; // Remplacez par le chemin vers votre configuration Firebase
 
 const Editor = ({ data,targetRef, onChange,name, editorblock,active,onchangetoo }) => {
     const ref = useRef();
@@ -66,6 +67,7 @@ const Editor = ({ data,targetRef, onChange,name, editorblock,active,onchangetoo 
                 id={editorblock} style={{ pageBreakInside: 'avoid' }}>
 
             </div>
+
         </div>
     </div>
 

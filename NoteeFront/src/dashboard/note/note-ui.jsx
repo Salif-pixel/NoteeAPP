@@ -28,42 +28,21 @@ import {Margin, Resolution, usePDF} from "react-to-pdf";
 import {CustomTheme} from "../../layout/widget/theme/theme.jsx";
 
 
-function Note({user,setuser}) {
+function Note({user,setuser,active,setActive,listnotes,setListNotes,listcategories,setListCategories,loading}) {
     const { toggle, setToggle } = useContext(theme);
     const textColor = toggle === 'light' ? 'menudark' : 'white';
     const bgModal = toggle === 'light' ? 'bg-blue-gray-50' : 'bg-customdark';
     const bgColor = toggle === 'light' ? 'whiteneige' : 'customdark';
     const textColorD = toggle === 'light' ? 'white' : 'black';
-    const [listnotes, setListNotes] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [listcategories, setListCategories] = useState([]);
     const [open, setOpen] = useState({ id:"" ,isopen: false, type: 'create',userid:user.id,categorielist: listcategories});
     const [open2, setOpen2] = useState({ id:"" ,isopen: false, type: 'create',userid:user.id,categorielist: listcategories})
-    const [active, setActive] = useState({id: "id", note: null });
     const [activecategorie, setActivecategorie] = useState({id: "id", categorie: null });
     const [dataexternal, setDataexternal] = useState({});
     const [nom,name]=useState("notee");
     const handleOpen = () => setOpen({ isopen: !open.isopen, type: open.type, userid: open.userid,categorielist: open.categorielist });
     const handleOpen2 = () => setOpen2({ isopen: !open2.isopen, type: open2.type, userid: open2.userid,categorielist: open2.categorielist });
     const { toPDF, targetRef } = usePDF({filename: `${nom}.pdf`, page: { margin: Margin.MEDIUM,format: "letter",orientation: "portrait", }, method: "save", resolution: Resolution.MEDIUM,overrides: {pdf: {compress: true}},});
-    useEffect(() => {
-        const getListCategorie=  async () =>{
-            const userData = { userId: user.id };
-            const categories  = await CategoriesList(userData);
-            setListCategories(categories.data);
-            setLoading(false);
-        }
-        const getListNotes=  async () =>{
-            getListCategorie();
-            const userData = { userId: user.id };
-            const notes  = await NotesList(userData);
-            setListNotes(notes.data);
-            if(notes.data.length>0)
-            setActive({id: notes.data[0].id, note: notes.data[0]});
-            setLoading(false);
-        }
-        getListNotes();
-    }, []);
+
     const [scopy,animaty]=useAnimate();
     const [scopo,animato]=useAnimate();
     const [themescope,animatetheme]=useAnimate();
@@ -145,8 +124,11 @@ function Note({user,setuser}) {
                                         setClickcategorie={setClickcategorie} setOpen={setOpen}/>
 
                 </motion.div>
-                {!loading && active.note != null && (
-                    <div>
+                {
+                    <motion.div initial={{opacity:0,y:200}} transition={{type: "spring",
+                        stiffness: 500,
+                        damping: 25,
+                        delay: 0.2,}} animate={{opacity:1,y:0}} >
                         {listnotes
                             .filter(elem => elem.id === active.note.id)
                             .map((note, index) => (
@@ -171,8 +153,8 @@ function Note({user,setuser}) {
 
                         }
 
-                    </div>
-                )}
+                    </motion.div>
+                }
             </div>
             <SideCategorie scope={scopo} open2={open2} setOpen2={setOpen2} animaty={animationscopy}
                            clickcategorie={clickcategorie}
