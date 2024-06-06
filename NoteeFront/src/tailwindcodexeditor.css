@@ -26,6 +26,12 @@
 .ant-menu-light .ant-menu-item-selected .anticon.ant-menu-item-icon{
     @apply text-white
 }
+.ant-menu-dark .ant-menu-item-selected .ant-menu-title-content{
+    @apply text-black
+}
+.ant-menu-light .ant-menu-item-selected .ant-menu-title-content{
+    @apply text-white
+}
 
 /* Ajouter ce bloc pour cibler les éléments .codex-editor */
 .codex-editor {

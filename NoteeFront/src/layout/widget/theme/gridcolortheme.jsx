@@ -20,24 +20,47 @@ export function GridItem({animationtheme,opentheme,setopentheme}) {
     const handleOpen = () => setOpen({color:open.color,type:false});
 
     return (
-        <motion.div initial={{scale:0}} id={`griditem`} className={` w-full py-24 px-4 lg:px-16`}>
+        <motion.div initial={{scale: 0}} id={`griditem`} className={`  w-full py-24 px-4 lg:px-16`}>
             <ChevronLeftIcon onClick={() => {
                 opentheme ? setopentheme(false) : setopentheme(true);
                 animationtheme();
             }} strokeWidth={2}
                              className={`h-4  w-4 cursor-pointer hover:text-${colortheme}-500 text-${colortext} absolute top-2 right-4 `}/>
 
-            <div className="container  px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2">
+            <div className="container   px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2">
                 <h1 className={`text-3xl mb-2 ${textColor}`}>Themes</h1>
                 <p className={` mb-4 ${textColor}`}> choisissez votre theme</p>
                 <div className="grid  w-full grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-28 lg:gap-y-16">
                     {industries.map((industry, index) => (
 
-                        <div key={index} onClick={()=>{setOpen({color:industry.color,type:true});
+                        <div key={index} onClick={() => {
+                            setOpen({color: industry.color, type: true});
 
-                            }} className={`relative cursor-pointer hover:bg-${industry.color}-500  group h-20 flex flex-row items-center rounded-full border-2 ${borderColor} bg-clip-border text-gray-700 `}>
+                        }}
+                             className={`relative cursor-pointer hover:bg-${industry.color}-500  group h-20 flex flex-row items-center rounded-full border-2 ${borderColor} bg-clip-border text-gray-700 `}>
                             <motion.div className={`flex flex-row justify-start  w-full`}>
-                                <div className={`ml-4 mr-10 h-10 w-10 rounded-full shadow-lg bg-${industry.color}-500`}></div>
+                                <div
+                                    className={`ml-4 mr-10 h-10 w-10 rounded-full shadow-lg bg-${industry.color}-500`}></div>
+                                <p className={` mt-2 ${textColor}`}>{industry.title}</p>
+                            </motion.div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="container  px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2">
+                <h1 className={`text-3xl mt-10 mb-2 ${textColor}`}>Custom Themes</h1>
+                <p className={` mb-4 ${textColor}`}> choisissez votre theme custom</p>
+                <div className="grid  w-full grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-28 lg:gap-y-16">
+                    {industries2.map((industry, index) => (
+
+                        <div key={index} onClick={() => {
+                            setOpen({color: industry.color, type: true});
+
+                        }}
+                             className={`relative  cursor-pointer hover:bg-${industry.color}-500  group h-20 flex flex-row items-center rounded-full border-2 ${borderColor} bg-clip-border text-gray-700 `}>
+                            <motion.div className={`flex flex-row justify-start  w-full`}>
+                                <div
+                                    className={`ml-4 mr-10 h-10 w-10 rounded-full shadow-lg bg-${industry.color}-500`}></div>
                                 <p className={` mt-2 ${textColor}`}>{industry.title}</p>
                             </motion.div>
                         </div>
@@ -47,19 +70,23 @@ export function GridItem({animationtheme,opentheme,setopentheme}) {
             <Dialog className={` ${bgColor} rounded-lg`} size={'xs'} open={open.type} handler={handleOpen}>
                 <DialogHeader className="flex flex-col items-center">
                     {" "}
-                    <Typography className={`mb-1 text-center ${textColor}`} variant="h4">
+                    <Typography className={`mb-1  text-center ${textColor} `} variant="h4">
                         changer de theme
                     </Typography>
                 </DialogHeader>
-                <div className={`w-full flex justify-center`}>
+                <div className={`w-full   flex justify-center`}>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        setOpen({color:open.color,type:false})
+                        setOpen({color: open.color, type: false})
                     }}
-                            className={`mt-4 mb-2 outline-none mx-auto border border-${borderColor} text-${textColor} bg-transparent hover:bg-transparent  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-transparent `}>retour
+                            className={`mt-4 mb-2 outline-none  mx-auto border border-${borderColor} text-${textColor} bg-transparent hover:bg-transparent  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-transparent `}>retour
                     </button>
-                    <button onClick={()=>{setColortheme(open.color);setOpen({color:open.color,type:false});localStorage.setItem("colortheme", open.color);}}
-                        className={`mt-4 mx-auto  mb-2 text-white bg-${colortheme}-500 hover:bg-${colortheme}-600 focus:ring-4 focus:outline-none focus:ring-${colortheme}-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-${colortheme}-500 dark:hover:bg-${colortheme}-600 dark:focus:ring-${colortheme}-600`}>valider
+                    <button onClick={() => {
+                        setColortheme(open.color);
+                        setOpen({color: open.color, type: false});
+                        localStorage.setItem("colortheme", open.color);
+                    }}
+                            className={`mt-4  mx-auto  mb-2 text-white bg-${colortheme}-500  hover:bg-${colortheme}-600 focus:ring-4 focus:outline-none focus:ring-${colortheme}-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-${colortheme}-500 dark:hover:bg-${colortheme}-600 dark:focus:ring-${colortheme}-600`}>valider
                     </button>
                 </div>
             </Dialog>
@@ -109,5 +136,52 @@ const industries = [
         alt: "marron",
         title: "Marron"
     },
+
+
+
+];
+
+const industries2 = [
+    {
+        color: "blue-gray",
+        alt: "blue-gray",
+        title: "Bleue gris"
+    },
+    {
+        color: "amber",
+        alt: "amber",
+        title: "saumon"
+    },
+    {
+        color: "deep-purple",
+        alt: "deep-purple",
+        title: "mauve"
+    },
+    {
+        color: "teal",
+        alt: "teal",
+        title: "teal"
+    },
+    {
+        color: "indigo",
+        alt: "indigo",
+        title: "indigo"
+    },
+    {
+        color: "cyan",
+        alt: "cyan",
+        title: "cyan"
+    },
+    {
+        color: "lime",
+        alt: "lime",
+        title: "lime"
+    },
+    {
+        color: "deep-orange",
+        alt: "deep-orange",
+        title: "orangina"
+    },
+
 
 ];

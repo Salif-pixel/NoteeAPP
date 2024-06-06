@@ -8,7 +8,7 @@ import {ChevronLeftIcon} from "@heroicons/react/16/solid/index.js";
     const bgColor = toggle === 'light' ? 'bg-white' : 'bg-bigdark';
 
     return (
-        <motion.div initial={{width:0}} id={`theme`} className={`${bgColor} flex  w-full `}>
+        <motion.div initial={{width:0}} id={`theme`} className={`${bgColor} flex overflow-auto w-full `}>
 
             <GridItem animationtheme={animationtheme} opentheme={opentheme} setopentheme={setopentheme} className={`w-full`} id={`griditem`}/>
         </motion.div>

@@ -89,7 +89,7 @@ function Menulist({ user, animation}) {
                       onClick={handleClick}
                 />
                 <img src={toggle === "light" ? sun : moon}
-                     className={`App-logo absolute p-2 bottom-0 m-2 cursor-pointer  rounded-lg`} alt="viteLogo"
+                     className={`App-logo absolute py-3 px-4  bottom-0 m-2 bg-${logoColor2} cursor-pointer shadow-lg rounded-lg`} alt="viteLogo"
                      onClick={() => {
                          setToggle(toggle === "light" ? "dark" : "light");
                          localStorage.setItem("theme", toggle === "light" ? "dark" : "light");

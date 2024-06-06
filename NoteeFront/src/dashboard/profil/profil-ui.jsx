@@ -60,9 +60,18 @@ function Profil({ user, setuser }) {
             <div className=" top-0 w-full absolute z-2 min-h-screen bg-center bg-cover" style={{
                 backgroundImage: `url(${user.Background})`
             }}>
+                <video
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    src={user.Background}
+                    autoPlay
+                    muted
+                    loop
+                >
+                    Votre navigateur ne supporte pas la balise vidéo.
+                </video>
 
             </div>
-            <motion.div id="board" initial={{ y: 200 }} animate={{ y: 0 }} transition={{
+            <motion.div id="board" initial={{y: 200}} animate={{y: 0}} transition={{
                 type: "spring",
                 stiffness: 100,
                 damping: 25,

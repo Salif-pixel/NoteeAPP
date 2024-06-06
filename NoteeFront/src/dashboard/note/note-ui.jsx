@@ -104,9 +104,11 @@ function Note({user,setuser}) {
             await animato('#categorie', {width: 0});
             await animaty('#note', {width: 0});
             await animatetheme('#content', {width: 0});
-            await animatetheme('#griditem', {scale:1,x:-500,opacity:0});
+            await animatetheme('#griditem', {scale:0.8,x:-500,opacity:0});
             await animatetheme('#theme', {width: '100vw'});
             await animatetheme('#griditem', {opacity:1,x:0});
+            setClicknote(true);
+            setClickcategorie(true);
 
 
         }else{

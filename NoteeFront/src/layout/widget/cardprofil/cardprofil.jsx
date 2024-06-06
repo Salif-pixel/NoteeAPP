@@ -8,7 +8,7 @@ import { IconButton } from '@material-tailwind/react';
 import { Button, Tooltip } from 'antd';
 import userprofil from "../../../assets/user.webp"
 import userbackground from "../../../assets/defaultBackground.avif"
-import React, { useContext } from 'react';
+import React, {useContext, useState} from 'react';
 import {ColorthemeNotee, theme} from '../../../App';
 import {ActionMenu} from "../actionMenu.jsx";
 
@@ -19,17 +19,42 @@ function CardProfil({ user, setOpen }) {
     const textColor = toggle === 'light' ? 'white' : 'menudark';
     const bgColor = toggle === 'light' ? "bg-customdark" : "bg-white";
     const bgBorder = user.role === "ADMIN" ? "red-300" : `${colortheme}-500`;
-
+    const [isImageError, setIsImageError] = useState(false);
+    const [imageSrc, setImageSrc] = useState(userbackground);
+    const handleImageError = () => {
+        setIsImageError(true);
+    };
+    const handleImageLoad = () => {
+        setImageSrc(user.Background === "default" ? userbackground : user.Background);
+    };
     return (
         <div
             className={`w-fit overflow-hidden  relative border-2  border-${bgConnected}  ${bgColor} mb-10  rounded-lg`}>
-             
-            
+
+
             <div className="rounded-lg h-32 w-80 overflow-hidden">
-                <img className="object-cover object-top w-full" src={user.Background === "default" ? userbackground : user.Background} alt='Mountain' />
-            </div>
-            <div className={`mx-auto w-32 h-32 relative -mt-16 border-4 border-${bgConnected} rounded-full overflow-hidden`}>
-                <img className="object-cover object-center " src={user.Profil === "default" ? userprofil : user.Profil} alt={user.firstName} />
+                {isImageError ? (
+                    <video
+                        className="object-cover object-top w-full h-full"
+                        src={user.Background === "default" ? userbackground : user.Background}
+                        autoPlay
+                        muted
+                        loop
+                    >
+                    </video>
+                ) : (
+                    <img
+                        className="object-cover object-top w-full h-full"
+                        src={user.Background === "default" ? userbackground : user.Background}
+                        alt=""
+                        onError={handleImageError}
+                        onLoad={handleImageLoad}
+                    />
+                )}            </div>
+            <div
+                className={`mx-auto w-32 h-32 relative -mt-16 border-4 border-${bgConnected} rounded-full overflow-hidden`}>
+                <img className="object-cover object-center " src={user.Profil === "default" ? userprofil : user.Profil}
+                     alt={user.firstName}/>
             </div>
             <div className="text-center mt-2  ">
                 <h2 className={`font-semibold  text-${textColor}`}>{user.firstName}</h2>
