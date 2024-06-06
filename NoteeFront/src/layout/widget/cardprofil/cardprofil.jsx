@@ -18,7 +18,7 @@ function CardProfil({ user, setOpen }) {
     const bgConnected = user.Online === true ? "green-500" : "gray-500"
     const textColor = toggle === 'light' ? 'white' : 'menudark';
     const bgColor = toggle === 'light' ? "bg-customdark" : "bg-white";
-    const bgBorder = user.role === "ADMIN" ? "red-500" : `${colortheme}-500`;
+    const bgBorder = user.role === "ADMIN" ? "red-300" : `${colortheme}-500`;
 
     return (
         <div

@@ -302,7 +302,7 @@ export function Table({ currentuser, setcurrentuser }) {
                                                                 <div className="w-max">
                                                                     {
                                                                         role === "ADMIN" ? <div
-                                                                            className={`relative grid items-center px-2 py-1 font-sans text-xs font-bold text-${textColor} uppercase rounded-md select-none whitespace-nowrap bg-red-500/20`}>
+                                                                            className={`relative grid items-center px-2 py-1 font-sans text-xs font-bold text-${textColor} uppercase rounded-md select-none whitespace-nowrap bg-red-500/30`}>
                                                                             <span className="">Administrateur</span>
                                                                         </div> :
                                                                             <div
