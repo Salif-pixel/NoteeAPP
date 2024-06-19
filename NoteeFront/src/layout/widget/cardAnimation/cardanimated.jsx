@@ -72,7 +72,7 @@ function CardAnimated() {
     const textColor = toggle === 'light' ? 'text-black' : 'text-white';
     const bgColor = toggle === 'light' ? 'bg-white' : 'bg-bigdark';
     return (
-        <div ref={scope} className={` min-w-[calc(100vw-40vw)] w-full  max-w-[calc(100vw-40vw)]`}>
+        <div ref={scope} className={`  w-full  max-w-[calc(100vw-40vw)]`}>
             <motion.div  initial={{x: -200, opacity: 0}} whileInView={{x: 0, scale: 0.8, opacity: 1}}
                         transition={{
                             type: "spring",

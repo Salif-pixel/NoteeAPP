@@ -24,7 +24,7 @@ function getItem(label, key, text,icon, children, type) {
     };
 }
 
-function Menulist({ user, animation}) {
+function Menulist({ user,sidebar,setSidebar, animation}) {
     const Navigate =useNavigate();
     const location = useLocation();
     const [select, setSelect] = useState('');
@@ -32,7 +32,7 @@ function Menulist({ user, animation}) {
     const {colortheme}=useContext(ColorthemeNotee);
     const logoColor = toggle === 'light' ? 'white' : 'black';
     const logoColor2 = toggle === 'light' ? 'black' : 'white';
-    const logoactive = select==='0' ? `border-4 border-${logoColor2}` : '';
+    const logoactive = select==='0' ? `border-4 border-${logoColor}` : '';
 
 
     useEffect(() => {
@@ -49,7 +49,7 @@ function Menulist({ user, animation}) {
    
     const items = [
        
-        user.role==='ADMIN' ? getItem('Utilisateur', '1','/dashboard/user', <UserOutlined />):getItem('', '',''),
+        user.role==='ADMIN' ? getItem('Utilisateurs', '1','/dashboard/user', <UserOutlined />):getItem('', '',''),
         getItem('note', '2','/dashboard/note', <EditOutlined/>),
         getItem('Deconnexion', '3','/auth/logout', <LogoutOutlined />),
 
@@ -61,14 +61,14 @@ function Menulist({ user, animation}) {
         Navigate(`${item.text}`);
       };
     return (
-        <div className=' fixed z-[999]  top-0 left-0 w-0 ' >
-            <motion.div id="menu" initial={{opacity:0}}
-                 className={`w-fit shadow-light-${colortheme}-900  relative flex sticky justify-center  h-[calc(100vh)] left-0 bg-${logoColor}`}>
+        <div  >
+            <motion.div
+                 className={`w-fit fixed z-[999]  top-0 left-0 shadow-light-${colortheme}-900  relative flex  justify-center  h-[calc(100vh)]  bg-${logoColor2}`}>
                 <Tooltip className='absolute top-0 z-[50] ' content="Profil">
                     <Avatar className={`absolute top-10  ${logoactive} cursor-pointer z-[50]`} onClick={() => {
                         setSelect('0');
                         Navigate('/dashboard/profil')
-                    }} src={user.Profil === " " ? userprofil : user.Profil} alt={"profil"} size="lg"/>
+                    }} src={user.Profil === " " ? userprofil : user.Profil} alt={"profil"} size={sidebar?"lg":"xl"}/>
                 </Tooltip>
                 <div className={`absolute top-1 right-1`}>
                     <svg xmlns="http://www.w3.org/2000/svg"  onClick={() => animation()} className={`h-4  w-4 cursor-pointer text-${colortheme}-500   z-[999]  top-0 `} fill="none" viewBox="0 0 24 24"
@@ -83,13 +83,13 @@ function Menulist({ user, animation}) {
                       defaultSelectedKeys={[select]}
                       defaultOpenKeys={['sub1']}
                       mode="inline"
-                      inlineCollapsed={true}
+                      inlineCollapsed={sidebar}
                       theme={toggle}
                       items={items.filter(item => item.label != '')}
                       onClick={handleClick}
                 />
                 <img src={toggle === "light" ? sun : moon}
-                     className={`App-logo absolute py-3 px-4  bottom-0 m-2 bg-${logoColor2} cursor-pointer shadow-lg rounded-lg`} alt="viteLogo"
+                     className={ sidebar?`App-logo absolute py-3 px-4  bottom-0 m-2 bg-${logoColor} cursor-pointer shadow-lg rounded-lg`:`App-logo absolute py-3 px-16  bottom-0 m-2 bg-${logoColor} cursor-pointer shadow-lg rounded-lg`} alt="viteLogo"
                      onClick={() => {
                          setToggle(toggle === "light" ? "dark" : "light");
                          localStorage.setItem("theme", toggle === "light" ? "dark" : "light");

@@ -8,28 +8,40 @@
     @apply w-16 border-0
 }
 .ant-menu-dark{
-    @apply bg-black ;
+    @apply bg-white ;
 }
 .ant-menu-light{
-    @apply bg-white;
+    @apply bg-black;
 
 }
 .ant-menu-dark .ant-menu-item.ant-menu-item-selected{
-    @apply bg-white;
-}
-.ant-menu-light .ant-menu-item.ant-menu-item-selected{
     @apply bg-black;
 }
-.ant-menu-dark .ant-menu-item-selected .anticon.ant-menu-item-icon{
-    @apply text-black
+.ant-menu-light .ant-menu-item.ant-menu-item-selected{
+    @apply bg-white;
 }
-.ant-menu-light .ant-menu-item-selected .anticon.ant-menu-item-icon{
+.ant-menu-dark .ant-menu-item-selected .anticon.ant-menu-item-icon{
     @apply text-white
 }
-.ant-menu-dark .ant-menu-item-selected .ant-menu-title-content{
+.ant-menu-light .ant-menu-item-selected .anticon.ant-menu-item-icon{
     @apply text-black
 }
+.ant-menu-dark .ant-menu-item-selected .ant-menu-title-content{
+    @apply text-white
+}
 .ant-menu-light .ant-menu-item-selected .ant-menu-title-content{
+    @apply text-black
+}
+.ant-menu-light .anticon.ant-menu-item-icon{
+    @apply text-white
+}
+.ant-menu-dark .anticon.ant-menu-item-icon{
+    @apply text-black
+}
+.ant-menu-dark .ant-menu-title-content{
+    @apply text-black
+}
+.ant-menu-light .ant-menu-title-content{
     @apply text-white
 }
 

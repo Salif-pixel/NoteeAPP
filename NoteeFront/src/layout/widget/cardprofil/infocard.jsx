@@ -78,71 +78,94 @@ function InfoCard({ user, back, setuser }) {
 
 
       <div className="flex w-3/4 ml-5 mt-10 ">
+
         <div className="w-full">
+          <button onClick={() => back()}
+                  className={`bg-${colortheme}-500  hover:bg-${colortheme}-700 text-white font-bold py-2 px-4 rounded`}>Retour
+          </button>
           <h1 className={`text-center text-xl font-medium text-${textColor}`}>Details Personnel</h1>
           <div className="md:col-span-5">
             <label className={`mb-2 text-${textColor}`} htmlFor="full_name">Nom prenom</label>
-            <input type="text" name="full_name" id="full_name" className={`${bgInput} border-${outline} text-${textColor} text-${textColor} mb-2 outline-none h-10 border mt-1 rounded px-4 w-full`} {...register('firstName', { required: true })} />
+            <input type="text" name="full_name" id="full_name"
+                   className={`${bgInput} border-${outline} text-${textColor} text-${textColor} mb-2 outline-none h-10 border mt-1 rounded px-4 w-full`} {...register('firstName', {required: true})} />
             {errors.firstName &&
-              <p className=' text-xs text-red-700 font-medium block'>Le prenom est obligatoire</p>}
+                <p className=' text-xs text-red-700 font-medium block'>Le prenom est obligatoire</p>}
           </div>
 
           <div className="md:col-span-5">
             <label className={`text-${textColor} mb-2`} htmlFor="email">Addresse mail</label>
-            <input type="email" name="email" id="email" className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border mt-1 rounded px-4 w-full`} {...register('email', { required: true })} placeholder="email@domain.com" />
+            <input type="email" name="email" id="email"
+                   className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border mt-1 rounded px-4 w-full`} {...register('email', {required: true})}
+                   placeholder="email@domain.com"/>
             {errors.email &&
-              <p className=' text-xs text-red-700 font-medium block'>L'adresse mail est obligatoire</p>}
+                <p className=' text-xs text-red-700 font-medium block'>L'adresse mail est obligatoire</p>}
           </div>
 
           <div className="md:col-span-3">
             <label className={`text-${textColor} mb-2`} htmlFor="address">Date de naissance</label>
-            <input type="date" name="address" id="address" className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border mt-1 rounded px-4 w-full`} {...register('Datenaissance', { required: true })} placeholder="" />
+            <input type="date" name="address" id="address"
+                   className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border mt-1 rounded px-4 w-full`} {...register('Datenaissance', {required: true})}
+                   placeholder=""/>
             {errors.Datenaissance &&
-              <p className=' text-xs text-red-700 font-medium block'>La date de naissance est obligatoire</p>}
+                <p className=' text-xs text-red-700 font-medium block'>La date de naissance est obligatoire</p>}
           </div>
 
           <div className="md:col-span-2">
             <label className={`text-${textColor} mb-2`} htmlFor="role">role</label>
-            <input type="text" name="role" id="role" className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border border-${outline} mt-1 rounded px-4 w-full`} {...register('role', { required: true })} placeholder="" readOnly />
+            <input type="text" name="role" id="role"
+                   className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border border-${outline} mt-1 rounded px-4 w-full`} {...register('role', {required: true})}
+                   placeholder="" readOnly/>
           </div>
           <div className="md:col-span-2">
             <label className={`text-${textColor} mb-2`} htmlFor="role">Statut</label>
-            <input type="text" name="role" id="role" className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border border-${outline} mt-1 rounded px-4 w-full`} {...register('Online', { required: true })} placeholder="" readOnly />
+            <input type="text" name="role" id="role"
+                   className={`${bgInput} border-${outline} text-${textColor} mb-2 outline-none h-10 border border-${outline} mt-1 rounded px-4 w-full`} {...register('Online', {required: true})}
+                   placeholder="" readOnly/>
           </div>
 
           <div className="md:col-span-2">
             <label className={`text-${textColor} mb-2`} htmlFor="profil">photo de profil</label>
-            <div className={`h-10 ${bgInput} border-${outline} text-${textColor} flex mb-2 border border-gray-200 rounded items-center mt-1`}>
+            <div
+                className={`h-10 ${bgInput} border-${outline} text-${textColor} flex mb-2 border border-gray-200 rounded items-center mt-1`}>
               <input
-                className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"
-                type="file"
-                id="formFile" onChange={(e) => setImg2({ file: e.target.files[0], count: 1 })} />
+                  className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"
+                  type="file"
+                  id="formFile" onChange={(e) => setImg2({file: e.target.files[0], count: 1})}/>
             </div>
             <input type="text" className='hidden' value={base64profil} {...register('Profil')} />
           </div>
 
           <div className="md:col-span-2">
             <label className={`text-${textColor} mb-2`} htmlFor="background">image de fond</label>
-            <div className={`h-10 ${bgInput} border-${outline} text-${textColor} mb-2 flex border border-gray-200 rounded items-center mt-1`}>
+            <div
+                className={`h-10 ${bgInput} border-${outline} text-${textColor} mb-2 flex border border-gray-200 rounded items-center mt-1`}>
               <input
-                className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"
-                type="file"
-                id="formFile" onChange={(e) => setImg({ file: e.target.files[0], count: 1 })} />
+                  className="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white  file:dark:text-white"
+                  type="file"
+                  id="formFile" onChange={(e) => setImg({file: e.target.files[0], count: 1})}/>
             </div>
           </div>
           <input type="text" className='hidden' value={base64Image} {...register('Background')} />
           <div className="md:col-span-2">
             <label className={`text-${textColor} mb-2`} htmlFor="role">A propos</label>
-            <textarea type="text" name="propos" id="propos"  className={`${bgInput} h-96 max-h-96 border-${outline} text-${textColor} mb-2 outline-none h-10 border border-${outline} mt-1 rounded px-4 w-full`} {...register('propos', { required: true })} placeholder=""  />
+            <textarea type="text" name="propos" id="propos"
+                      className={`${bgInput} h-96 max-h-96 border-${outline} text-${textColor} mb-2 outline-none h-10 border border-${outline} mt-1 rounded px-4 w-full`} {...register('propos', {required: true})}
+                      placeholder=""/>
           </div>
 
 
           <div className="md:col-span-5 mt-5 flex justify-between text-right">
 
-            <button onClick={() => back()} className={`bg-${colortheme}-500  hover:bg-${colortheme}-700 text-white font-bold py-2 px-4 rounded`}>Retour</button>
+
             <button onClick={handleSubmit(async (data) => {
-              if (img.count != 0) { const url = await Upload(); data.Background = url; }
-              if (img2.count != 0) { const url = await Uploadprofil(); data.Profil = url; }
+              if (img.count != 0) {
+                const url = await Upload();
+                data.Background = url;
+              }
+              if (img2.count != 0) {
+                const url = await Uploadprofil();
+                data.Profil = url;
+              }
 
 
               await updateuser(data, user.email).then(() => {
@@ -156,13 +179,16 @@ function InfoCard({ user, back, setuser }) {
                 setUserInfo(tosave);
               })
 
-            })} className={`bg-${colortheme}-500 hover:bg-${colortheme}-700 text-white font-bold py-2 px-4 rounded`}>Valider</button>
+            })}
+                    className={`bg-${colortheme}-500 hover:bg-${colortheme}-700 text-white font-bold py-2 px-4 rounded`}>Valider
+            </button>
 
           </div>
-          
+
         </div>
       </div>
-      <div className=" text-gray-600 relative top-0 mb-30  hidden lg:flex xl:m-16 w-1/2 bg-contain bg-center bg-no-repeat">
+      <div
+          className=" text-gray-600 relative top-0 mb-30  hidden lg:flex xl:m-16 w-1/2 bg-contain bg-center bg-no-repeat">
         <p className={`text-${textColor}`}>vous pouvez modifier vos données en toute sécurité</p>
         <img className='absolute mt-20' src="https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg" alt="edit" />
 

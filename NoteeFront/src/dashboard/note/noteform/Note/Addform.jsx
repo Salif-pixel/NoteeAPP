@@ -73,7 +73,6 @@ function AddForm({ setCategoriesList,setListNotes,listnotes, open, setOpen}) {
                     setOpen({isopen: false, type: "create", title: data.title, content: data.content, userId: data.userId, categoryId: data.categoryId});
                     setListNotes(res.data.listnotes);
                     setCategoriesList(res.data.listcategory)
-                console.log(res.data.listnotes)
 
                 }).catch((error) => {
                 setOpen({isopen: false, type: "create", title: data.title, content: data.content, userId: data.userId, categoryId: data.categoryId});

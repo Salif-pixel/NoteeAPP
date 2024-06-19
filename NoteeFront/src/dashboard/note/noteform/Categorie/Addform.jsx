@@ -64,6 +64,18 @@ function Addformcategorie({ setCategoriesList,listcategories, open, setOpen}) {
                 <option value="green">vert</option>
                 <option value="yellow">jaune</option>
                 <option value="pink">rose</option>
+                <option value="lime">lime</option>
+                <option value="blue-gray">bleue gris</option>
+                <option value="indigo">indigo</option>
+                <option value="teal">bleue vert</option>
+                <option value="cyan">cyan</option>
+                <option value="light-blue">bleue clair</option>
+                <option value="light-green">vert clair</option>
+                <option value="amber">ambre</option>
+                <option value="deep-orange">orange foncé</option>
+                <option value="deep-purple">violet foncé</option>
+                <option value="brown">marron</option>
+                <option value="gray">gris</option>
 
 
             </select>

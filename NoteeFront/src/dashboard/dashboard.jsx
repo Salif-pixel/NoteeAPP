@@ -4,7 +4,7 @@ import Menulist from '../layout/widget/menulist';
 import { IconButton, Tab, Tooltip } from '@material-tailwind/react';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import User from './user/user-ui';
-import { theme } from '../App';
+import {ColorthemeNotee, theme} from '../App';
 import {getcurrentuser, getuser} from './user/user-service';
 import { AuthContext } from '../App';
 import Profil from './profil/profil-ui';
@@ -23,15 +23,13 @@ import Note from "./note/note-ui.jsx";
 import {CategoriesList} from "./note/service/categorie-service.jsx";
 import {NotesList} from "./note/service/note-service.jsx";
 import Cardanimated from "../layout/widget/cardAnimation/cardanimated.jsx";
-import {set} from "react-hook-form";
 function Dashboard() {
     const [user, setUser] = useState(null);
     const { userInfo } = useContext(AuthContext);
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const { toggle } = useContext(theme);
-    const {colortheme}=useContext(theme);
-    const bgColor = toggle === 'light' ? 'bg-blue-gray-50/50' : 'bg-black';
+    const bgColor = toggle === 'dark' ? 'bg-blue-gray-50/50' : 'bg-black';
     const backmenu = toggle === 'light' ? 'bg-white' : 'bg-black';
     const menucolor = toggle === 'light' ? 'black' : 'gray-100'
     const [scope, animate] = useAnimate();
@@ -44,7 +42,11 @@ function Dashboard() {
     const [users, setUsers] = useState([]);
     const [fetched, setFetched] = useState(false);
     const [loading3, setLoading3] = useState(true);
+    let sidebarold=localStorage.getItem("sidebar");
+    if(sidebarold===null){sidebarold=true}
+    const [sidebar, setSidebar] = useState(sidebarold==="true"?true:false);
     const createdSocket = io(WebSocketUrl);
+    const textColor = toggle === 'light' ? 'text-black' : 'text-white';
 
     const { isIdle } = useIdleTimeout({
         onIdle: () => {
@@ -71,16 +73,13 @@ function Dashboard() {
             setCollapsed(false);
             await Promise.all([
                 animate("#tool", { x: 100 }),
-               animate("#menu", { opacity:1, width: 80, x: 0 }, { duration: 0.2 }),
+               animate("#menu", { opacity:1, x: 0,width:'fit-content' }, { duration: 0.2 })
             ])
-
-
-
         }
         else {
             setCollapsed(true);
             await Promise.all([
-                animate("#menu", { width: 0, x: -150 }, { duration: 0.2 })
+                animate("#menu", { width: 0, x: -160 }, { duration: 0.2 })
             ]);
 
         }
@@ -143,30 +142,45 @@ function Dashboard() {
 
 
     return (
-        <div ref={scope} className='w-400 overflow-x-visible relative h-calc[(vh)]'>
+        <div ref={scope} className='w-400 overflow-x-hidden relative  h-screen'>
 
             {collapsed&&!loading && user != null && !loading2&&<Tooltip className='' content="menu">
                 <AppstoreOutlined id="tool" onClick={() => animation()} className={`font-bold fixed z-50  mt-3 ml-2 p-2 ${backmenu} rounded-lg text-${menucolor}`}>appuie</AppstoreOutlined>
             </Tooltip>}
             {(!loading && user != null && !loading2 &&!loading3  ) ?
-                <div className={`w-full flex ${bgColor}`} >
-                    <motion.div initial={{ opacity:0,x:0  }} animate={{opacity:1, x: -150 }}  id="menu">
-                        <Menulist user={user} animation={animation} className="h-[calc(100vh)]  " />
+                <div className={`w-full h-screen flex ${bgColor}`} >
+                    <motion.div  initial={{ opacity:0,x:0,width:0  }} animate={{ x: -160 }}  transition={{
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 25,
+                        duration: 0.5
+                    }}  id="menu">
+
+                        <Menulist user={user} sidebar={sidebar} setSidebar={setSidebar} animation={animation} className="h-[calc(100vh)]  " />
                     </motion.div>
-                    <div id="page" className="w-full min-h-screen">
+                    <div id="page" className="w-full min-h-screen ">
                         <Routes  >
                             {user.role === "ADMIN" && <Route path="/user" element={<User user={user} loading={loading3} setuser={setUser} Users={users} setUsers={setUsers}  />} />}
                             <Route path="/profil" element={<Profil user={user}   setuser={setUser}  />} />
-                            <Route path="/note" element={<Note loading={loading2} user={user} setActive={setActive} active={active} listnotes={listnotes} setListNotes={setListNotes} setListCategories={setListCategories} listcategories={listcategories} setuser={setUser} />} />
+                            <Route path="/note" element={<Note sidebar={sidebar} setSidebar={setSidebar} loading={loading2} user={user} setActive={setActive} active={active} listnotes={listnotes} setListNotes={setListNotes} setListCategories={setListCategories} listcategories={listcategories} setuser={setUser} />} />
                             <Route path="*" element={<Notfound/>} />
                         </Routes>
                     </div>
 
                 </div>
-                :<div className={` bg-black  overflow-hidden  h-screen  min-w-[calc(100vw-40vw)] flex justify-center`}><Cardanimated  /> </div>}
+                :<div className={` ${bgColor} relative  overflow-hidden  h-screen  min-w-[calc(100vw-40vw)] `}>
+                    <div className={`backdrop-blur-lg  w-screen h-screen flex justify-center items-center`}>
+
+                        <motion.div className={` w-full flex flex-col items-center justify-center `} initial={{scale: 0.75, y: -20}}>
+                            <Cardanimated/>
+
+                        </motion.div>
+
+                    </div>
+                </div>}
+
 
         </div>
-
 
 
     );

@@ -7,7 +7,7 @@ import { useIdleTimer } from "react-idle-timer"
  * @param idleTime - number of seconds to wait before user is logged out
  */
 const useIdleTimeout = ({ onIdle, idleTime = 1 }) => {
-    const idleTimeout = 10000 * idleTime;
+    const idleTimeout = 5000 * idleTime;
     const [isIdle, setIdle] = useState(false)
    
     const handleIdle = () => {

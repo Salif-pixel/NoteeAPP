@@ -3,29 +3,43 @@ import {ColorthemeNotee, theme} from '../../../App.jsx'; // Assurez-vous que le 
 import { motion } from 'framer-motion';
 import {ChevronLeftIcon} from "@heroicons/react/16/solid/index.js";
 import {Dialog, DialogHeader, Typography} from "@material-tailwind/react";
-import Addform from "../../../dashboard/note/noteform/Note/Addform.jsx";
-import Updateform from "../../../dashboard/note/noteform/Note/Updateform.jsx";
-import Deleteform from "../../../dashboard/note/noteform/Note/Deleteform.jsx";
-import {Deletenote} from "../../../dashboard/note/service/note-service.jsx";
+import {Menu} from "antd";
+import {EditOutlined, LogoutOutlined, UserOutlined} from "@ant-design/icons";
 
-export function GridItem({animationtheme,opentheme,setopentheme}) {
+function getItem(label, key, text,icon, children, type) {
+    return {
+        key,
+        icon,
+        children,
+        label,
+        text,
+        type,
+    };
+}
+
+const items = [
+
+
+    getItem('note', '2','/dashboard/note', <EditOutlined/>),
+    getItem('Deconnexion', '3','/auth/logout', <LogoutOutlined />),
+
+];
+
+
+export function GridItem({sidebar,setSidebar}) {
     const { toggle } = useContext(theme);
     const {setColortheme,colortheme}=useContext(ColorthemeNotee);
     const bgColor = toggle === 'light' ? 'bg-white' : 'bg-customdark';
     const textColor = toggle === 'light' ? 'text-black' : 'text-white';
+    const activeColor = toggle === 'light' ? 'bg-black' : 'bg-white';
     const borderColor = toggle === 'light' ? 'border-gray-300' : 'border-customdark';
     const colortext = toggle === 'light' ? 'black' : 'white';
     const [open, setOpen] = React.useState({color:colortheme,type:false});
-
     const handleOpen = () => setOpen({color:open.color,type:false});
 
     return (
-        <motion.div initial={{scale: 0}} id={`griditem`} className={`  w-full py-24 px-4 lg:px-16`}>
-            <ChevronLeftIcon onClick={() => {
-                opentheme ? setopentheme(false) : setopentheme(true);
-                animationtheme();
-            }} strokeWidth={2}
-                             className={`h-4  w-4 cursor-pointer hover:text-${colortheme}-500 text-${colortext} absolute top-2 right-4 `}/>
+        <motion.div initial={{scale: 0,opacity:0}} id={`griditem`} className={` overflow-auto  w-full  py-24 px-4`}>
+
 
             <div className="container   px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2">
                 <h1 className={`text-3xl mb-2 ${textColor}`}>Themes</h1>
@@ -66,6 +80,64 @@ export function GridItem({animationtheme,opentheme,setopentheme}) {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="container  px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2">
+                <h1 className={`text-3xl mt-10 mb-2 ${textColor}`}>Theme side bar</h1>
+                <p className={` mb-4 ${textColor}`}> choisissez la forme de votre side bar</p>
+                <div
+                    className="grid  w-full grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-28 mb-10 lg:gap-y-16">
+                    <div className={`flex  flex-col items-center justify-center`}>
+                        <div className={`border-2 ${borderColor} w-fit rounded-lg`}>
+                            <Menu className={` rounded-lg p-2 w-full `}
+                                  defaultSelectedKeys={'2'}
+                                  defaultOpenKeys={'2'}
+                                  mode="inline"
+                                  inlineCollapsed={true}
+                                  theme={toggle}
+                                  items={items}
+
+                            />
+                        </div>
+                        <motion.div
+                            initial={{scale: 0.35}} onClick={() => {setSidebar(true);localStorage.setItem("sidebar","true")}}
+                            className={`relative cursor-pointer  w-fit h-fit mt-4  flex flex-row items-center rounded-full border-2 ${borderColor} bg-clip-border text-gray-700 `}>
+                            <motion.div  className={`flex  justify-start  `}>
+                                <div
+                                    className={ sidebar?` h-10 w-10 rounded-full shadow-lg ${activeColor}`:` h-10 w-10 rounded-full shadow-lg`}></div>
+
+                            </motion.div>
+                        </motion.div>
+
+                    </div>
+
+                    <div className={`flex  flex-col items-center justify-center`}>
+                        <div className={`border-2 ${borderColor} w-fit rounded-lg`}>
+                            <Menu className={` rounded-lg p-2 w-full `}
+                                  defaultSelectedKeys={'2'}
+                                  defaultOpenKeys={'2'}
+                                  mode="inline"
+                                  inlineCollapsed={false}
+                                  theme={toggle}
+                                  items={items}
+
+                            />
+                        </div>
+                        <motion.div initial={{scale: 0.35}} onClick={() => {setSidebar(false);localStorage.setItem("sidebar","false")}}
+                            className={`relative cursor-pointer  w-fit h-fit mt-4   flex flex-row items-center rounded-full border-2 ${borderColor} bg-clip-border text-gray-700 `}>
+                            <motion.div  className={`flex  justify-start  `}>
+                                <div
+                                    className={ !sidebar?` h-10 w-10 rounded-full shadow-lg ${activeColor}`:` h-10 w-10 rounded-full shadow-lg`}></div>
+
+                            </motion.div>
+                        </motion.div>
+
+                    </div>
+
+
+
+
+                </div>
+
             </div>
             <Dialog className={` ${bgColor} rounded-lg`} size={'xs'} open={open.type} handler={handleOpen}>
                 <DialogHeader className="flex flex-col items-center">
@@ -136,7 +208,6 @@ const industries = [
         alt: "marron",
         title: "Marron"
     },
-
 
 
 ];

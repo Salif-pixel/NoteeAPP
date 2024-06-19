@@ -28,7 +28,7 @@ import {Margin, Resolution, usePDF} from "react-to-pdf";
 import {CustomTheme} from "../../layout/widget/theme/theme.jsx";
 
 
-function Note({user,setuser,active,setActive,listnotes,setListNotes,listcategories,setListCategories,loading}) {
+function Note({user,setuser,active,setActive,sidebar,setSidebar, listnotes,setListNotes,listcategories,setListCategories,loading}) {
     const { toggle, setToggle } = useContext(theme);
     const textColor = toggle === 'light' ? 'menudark' : 'white';
     const bgModal = toggle === 'light' ? 'bg-blue-gray-50' : 'bg-customdark';
@@ -80,21 +80,23 @@ function Note({user,setuser,active,setActive,listnotes,setListNotes,listcategori
         if(opentheme){
 
 
-            await animato('#categorie', {width: 0});
-            await animaty('#note', {width: 0});
-            await animatetheme('#content', {width: 0});
-            await animatetheme('#griditem', {scale:0.8,x:-500,opacity:0});
-            await animatetheme('#theme', {width: '100vw'});
+            await animato('#categorie', {width: 0},{duration:0.2});
+            await animaty('#note', {width: 0},{duration:0.2});
+            await animatetheme('#content', {width: 0},{duration:0.2});
+            await animatetheme('#griditem', {scale:0.9,x:-500},{duration:0.2});
+            await animatetheme('#theme', {width: '100vw',x:0},{duration:0.2})
+            await animatetheme('#theme', {opacity:1},{duration:0.2})
             await animatetheme('#griditem', {opacity:1,x:0});
             setClicknote(true);
             setClickcategorie(true);
 
 
         }else{
-            await animatetheme('#griditem', {opacity:0});
-            await animatetheme('#theme', {width: 0});
-            await animatetheme('#griditem', {scale:0},{duration: 0.5});
-            await animatetheme('#content', {width: '100vw'});
+            await animatetheme('#griditem', {opacity:0},{duration: 0.2});
+            await animatetheme('#theme', {width: 0,opacity:0},{duration: 0.2});
+            await animatetheme('#griditem', {scale:0},{duration: 0.2});
+            await animatetheme('#theme', {x:500},{duration: 0.2});
+            await animatetheme('#content', {width: '100%'});
 
         }
 
@@ -118,7 +120,7 @@ function Note({user,setuser,active,setActive,listnotes,setListNotes,listcategori
                                 delay: 0.2,
                             }}
                             className={`flex  justify-end mb-2 min-w-screen    flex-row`}>
-                    <ActionSettingsEdit toPDF={toPDF} opentheme={opentheme} setOpentheme={setOpentheme} animationtheme={animationtheme} targetRef={targetRef} animationscope={animationscope} user={user}
+                    <ActionSettingsEdit toPDF={toPDF}  opentheme={opentheme} setOpentheme={setOpentheme} animationtheme={animationtheme} targetRef={targetRef} animationscope={animationscope} user={user}
                                         active={active} animationscopy={animationscopy} clicknote={clicknote}
                                         setClicknote={setClicknote} clickcategorie={clickcategorie}
                                         setClickcategorie={setClickcategorie} setOpen={setOpen}/>
@@ -162,7 +164,7 @@ function Note({user,setuser,active,setActive,listnotes,setListNotes,listcategori
                            setActive={setActive} listnotes={listnotes} listcategories={listcategories} open2={open2}
                            setOpen2={setOpen2} activecategorie={activecategorie}
                            setActivecategorie={setActivecategorie}/>
-           <CustomTheme animationtheme={animationtheme} opentheme={opentheme} setopentheme={setOpentheme}/>
+           <CustomTheme sidebar={sidebar} setSidebar={setSidebar} animationtheme={animationtheme} opentheme={opentheme} setopentheme={setOpentheme}/>
             <Dialog className={`${bgModal} rounded-lg`} size={'xs'} open={open.isopen} handler={handleOpen}>
                 <DialogHeader className="flex flex-col items-center">
                     {" "}

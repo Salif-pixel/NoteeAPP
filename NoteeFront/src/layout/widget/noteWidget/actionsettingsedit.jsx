@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { CiMenuKebab } from "react-icons/ci";
 import { usePDF } from 'react-to-pdf';
-import {Bars3BottomLeftIcon, Bars3BottomRightIcon} from "@heroicons/react/16/solid/index.js";
+import {Bars3BottomLeftIcon, Bars3BottomRightIcon, SwatchIcon} from "@heroicons/react/16/solid/index.js";
 import React, {useContext} from "react";
 import {theme} from "../../../App.jsx";
 import {motion} from "framer-motion";
@@ -71,7 +71,7 @@ export function ActionSettingsEdit({animationtheme,opentheme,setOpentheme, click
                 <MenuItem className={`flex flex-row justify-start `}  onClick={() => {
                     opentheme ? setOpentheme(false) : setOpentheme(true);
                     animationtheme()
-                }} > <Bars3BottomLeftIcon strokeWidth={2} className={`h-4  w-4 text-blue-gray-400 mr-4`}/>theme</MenuItem>
+                }} > <SwatchIcon strokeWidth={2} className={`h-4  w-4 text-blue-gray-400 mr-4`}/>theme</MenuItem>
             </MenuList>
         </Menu>
     );

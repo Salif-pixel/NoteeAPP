@@ -10,15 +10,17 @@ function Navlanding(){
     const {colortheme} = useContext(ColorthemeNotee)
     const bgColor = toggle === 'light' ? 'bg-white' : 'bg-bigdark';
     const bgBorder = toggle === 'light' ? 'border-gray-200' : 'border-bigdark';
+    const logoColor2 = toggle === 'light' ? 'black' : 'white';
     return (
         <div className={`backdrop-blur-lg`}>
             <nav className={` relative px-4 py-4 flex justify-between items-center  border-b ${bgBorder}`}>
-                    <img src={toggle === "light" ? sun : moon}
-                         className={`App-logo ${bgColor}   m-2 cursor-pointer   rounded-lg`}
-                         alt="viteLogo" onClick={() => {
-                        setToggle(toggle === "light" ? "dark" : "light");
-                        localStorage.setItem("theme", toggle === "light" ? "dark" : "light");
-                    }}/>
+                <img src={toggle === "light" ? sun : moon}
+                     className={`App-logo  py-3 px-4  bottom-0 m-2 bg-${colortheme}-500 cursor-pointer shadow-lg rounded-lg`}
+                     alt="viteLogo"
+                     onClick={() => {
+                         setToggle(toggle === "light" ? "dark" : "light");
+                         localStorage.setItem("theme", toggle === "light" ? "dark" : "light");
+                     }}/>
                 <div>
                     <a onClick={() => navigate("/auth/login")}
                        className={`inline-block ml-auto mr-3 py-3 px-6 bg-${colortheme}-500 hover:bg-${colortheme}-600 text-sm text-white font-bold  rounded-xl transition duration-200`}

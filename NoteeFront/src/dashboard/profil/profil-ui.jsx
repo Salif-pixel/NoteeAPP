@@ -29,8 +29,8 @@ function Profil({ user, setuser }) {
                 animate("#img", { opacity: 0, scale: 0 }, { duration: 0.5 }),
                 animate("#content", { opacity: 0, scale: 0 }, { duration: 0.5 }),
                 animate("#calendar", { opacity: 0, scale: 0 }, { duration: 0.5 }),
-                animate("#board", { y: 100 }, { duration: 0.5 }),
-                animate("#infocard", { scale: 1, opacity: 1, y: -250, }, { duration: 0.6 }),
+                animate("#board", { y: 300 }, { duration: 0.5 }),
+                animate("#infocard", { scale: 1, opacity: 1, y: -350, }, { duration: 0.6 }),
                 animate("#read", { opacity: 1 }, { duration: 0.5 }),
             ])
 
@@ -40,7 +40,7 @@ function Profil({ user, setuser }) {
                 animate("#img", { opacity: 1, scale: 1, }, { duration: 0.5 }),
                 animate("#content", { opacity: 1, scale: 1 }, { duration: 0.5 }),
                 animate("#calendar", { opacity: 1, scale: 1 }, { duration: 0.5 }),
-                animate("#board", { y: 0 }, { duration: 0.5 }),
+                animate("#board", { y: 120 }, { duration: 0.5 }),
                 animate("#read", { opacity: 0 }, { duration: 0.5 }),
             ])
 
@@ -55,7 +55,7 @@ function Profil({ user, setuser }) {
     const TextColor = toggle === 'light' ? 'customdark' : 'white';
     const logoColor = toggle === 'light' ? 'blue-gray-50' : 'black';
     return (
-        <div ref={scope} className='w-full relative flex flex-col items-center h-full  overflow-hidden'>
+        <div ref={scope} className='w-full relative flex flex-col items-center h-full  overflow-x-hidden'>
 
             <div className=" top-0 w-full absolute z-2 min-h-screen bg-center bg-cover" style={{
                 backgroundImage: `url(${user.Background})`
@@ -71,7 +71,7 @@ function Profil({ user, setuser }) {
                 </video>
 
             </div>
-            <motion.div id="board" initial={{y: 200}} animate={{y: 0}} transition={{
+            <motion.div id="board" initial={{y: 400}} animate={{y: 120}} transition={{
                 type: "spring",
                 stiffness: 100,
                 damping: 25,
